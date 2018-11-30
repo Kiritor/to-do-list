@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue入门学习</title>
+    <link rel="stylesheet" href="css/to-do.css" type="text/css" />
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="todo-app" id="todo-app">
+        <header class="header">
+            <h1>云备忘录</h1>
+            <input v-model.trim="newTodoItem" @keyup.enter="addTodoItem" placeholder="接下来要做什么?" autofocus="" class="new-todo">
+        </header>
+        <section class="main">
+            <input class="toggle-all" id="toggle-all" type="checkbox" v-model="allDone" />
+            <label for="toggle-all">一键全部完成</label>
+            <ul class="todo-list">
+                <li v-for="(todo, index) in todoItems" :key="'todo-' + index" :class="">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" v-model="todo.completed" />
+                        <label>{{ todo.title }}</label>
+                        <button class="destroy" v-on:click="removeTodoItem(todo)"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!--
+        <footer class="footer"><span class="todo-count"><strong>1</strong> 项未完成</span>
+            <ul class="filters">
+                <li><a href="#/" class="selected">全部</a></li>
+                <li><a href="#/active" class="">未完成</a></li>
+                <li><a href="#/completed" class="">已完成</a></li>
+            </ul> <button class="clear-completed" style="display: block;">清空已完成</button>
+        </footer>
+        -->
+    </div>
+
+    <script src="js/to-do.js"></script>
+</body>
+
+</html>
