@@ -167,6 +167,11 @@ body {
 	width: 506px;
 	padding: 12px 16px;
 	margin: 0 0 0 43px;
+	border: none;
+}
+
+.todo-list li.editing .edit:focus {
+	background-color: #fefefe
 }
 
 .todo-list li.editing .view {

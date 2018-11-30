@@ -17,28 +17,33 @@
             <h1>云备忘录</h1>
             <input v-model.trim="newTodoItem" @keyup.enter="addTodoItem" placeholder="接下来要做什么?" autofocus="" class="new-todo">
         </header>
-        <section class="main">
-            <input class="toggle-all" id="toggle-all" type="checkbox" v-model="allDone" />
+        <section class="main" v-show="showTodo">
+            <input class="toggle-all" id="toggle-all" type="checkbox" v-model="allDone"/>
             <label for="toggle-all">一键全部完成</label>
             <ul class="todo-list">
-                <li v-for="(todo, index) in todoItems" :key="'todo-' + index" :class="">
+                <li v-for="(todo, index) in todoItems" :key="'todo-' + index" :class="{completed: todo.completed,editing: todo.edited}">
                     <div class="view">
                         <input class="toggle" type="checkbox" v-model="todo.completed" />
-                        <label>{{ todo.title }}</label>
+                        <label v-cloak @dblclick="editTodoItem(todo)">{{ todo.title }}</label>
                         <button class="destroy" v-on:click="removeTodoItem(todo)"></button>
                     </div>
+                    <input class="edit" v-model.trim="todo.title" @keyup.enter="doneEditItem(todo,index)" @keyup.esc="cancelEditItem(todo)"
+                        @blur="cancelEditItem(todo)"/>
                 </li>
             </ul>
         </section>
-        <!--
-        <footer class="footer"><span class="todo-count"><strong>1</strong> 项未完成</span>
+
+        <footer class="footer" v-show="showTodo"><span class="todo-count"><strong v-cloak>{{activeCount}}</strong> 项未完成</span>
             <ul class="filters">
+                <!--
                 <li><a href="#/" class="selected">全部</a></li>
                 <li><a href="#/active" class="">未完成</a></li>
                 <li><a href="#/completed" class="">已完成</a></li>
-            </ul> <button class="clear-completed" style="display: block;">清空已完成</button>
+                -->
+            </ul>
+            <button class="clear-completed" v-on:click="removeCompletedItems" v-show="completedCount">清空已完成</button>
         </footer>
-        -->
+
     </div>
 
     <script src="js/to-do.js"></script>
