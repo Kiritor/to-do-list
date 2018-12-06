@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/to-do.css" type="text/css" />
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
                         <button class="destroy" v-on:click="removeTodoItem(todo)"></button>
                     </div>
                     <input class="edit" v-model.trim="todo.title" @keyup.enter="doneEditItem(todo,index)" @keyup.esc="cancelEditItem(todo)"
-                        @blur="cancelEditItem(todo)"/>
+                        @blur="cancelEditItem(todo)" v-focus="todo.id === todo.id"/>
                 </li>
             </ul>
         </section>
