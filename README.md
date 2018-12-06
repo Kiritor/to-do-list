@@ -7,5 +7,8 @@ Vue.js完成的To-Do-List,目前只完成了前端交互效果，尚未加入后
 *  批量删除计划
 *  完成计划
 
-### To-Do
-*  后端持久化功能
+### 后端持久化
+具体参考 https://github.com/Kiritor/Spring-Boot-Study/tree/master/springboot-kotlin
+SpringBoot使用kotlin
+CORS解决跨域问题
+JPA操作数据库
