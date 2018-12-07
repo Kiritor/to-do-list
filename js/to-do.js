@@ -35,13 +35,12 @@
         },
         methods: {
             initData() {
-                var that = this;
                 axios.get('http://localhost:8080/springboot/items/')
                     .then(response => {this.todoItems = response.data});
             },
             updateData() {
                 axios.post('http://localhost:8080/springboot/items/update',this.todoItems)
-                .then();
+                .then(response => {this.todoItems = response.data});
             },
             deleteData(item) {
                 axios.post('http://localhost:8080/springboot/items/delete',item)
@@ -56,7 +55,7 @@
                     completed: false,
                     edited: false
                 })
-                // this.updateData();
+                this.updateData();
                 this.newTodoItem = '';
             },
             removeTodoItem(item) {
